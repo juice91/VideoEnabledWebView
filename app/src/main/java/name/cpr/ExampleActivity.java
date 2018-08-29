@@ -72,11 +72,17 @@ public class ExampleActivity extends ActionBarActivity
             }
         });
         webView.setWebChromeClient(webChromeClient);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setAppCacheMaxSize(1024*1024*8);
+        String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
+        webView.getSettings().setAppCachePath(appCachePath);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setAppCacheEnabled(true);
+
         // Call private class InsideWebViewClient
         webView.setWebViewClient(new InsideWebViewClient());
-        
         // Navigate anywhere you want, but consider that this classes have only been tested on YouTube's mobile site
-        webView.loadUrl("http://m.youtube.com");
+        webView.loadUrl("https://stage.myviewboard.com");
 
     }
 
